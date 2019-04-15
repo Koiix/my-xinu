@@ -1,0 +1,73 @@
+\hypertarget{rand_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/rand.c File Reference}
+\label{rand_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/rand.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/rand.\+c}}
+
+
+This file provides srand, rand.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{rand_8c_a17dc4076ae6ed84dccf4e1488b3cc918}{srand} (unsigned long x)
+\begin{DoxyCompactList}\small\item\em Sets the random seed. \end{DoxyCompactList}\item 
+unsigned long \hyperlink{rand_8c_a407407f3687e55aa5601b8ebea7984ce}{rand} (void)
+\begin{DoxyCompactList}\small\item\em Generates a random long. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides srand, rand. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{rand_8c}{rand.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{rand_8c_a407407f3687e55aa5601b8ebea7984ce}\label{rand_8c_a407407f3687e55aa5601b8ebea7984ce}} 
+\index{rand.\+c@{rand.\+c}!rand@{rand}}
+\index{rand@{rand}!rand.\+c@{rand.\+c}}
+\paragraph{\texorpdfstring{rand()}{rand()}}
+{\footnotesize\ttfamily unsigned long rand (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Generates a random long. 
+
+\begin{DoxyReturn}{Returns}
+random long 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file rand.\+c.
+
+
+\begin{DoxyCode}
+25 \{
+26     \textcolor{keywordflow}{return} (((randx = randx * 1103515245 + 12345) >> 16) & 077777);
+27 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{rand_8c_a17dc4076ae6ed84dccf4e1488b3cc918}\label{rand_8c_a17dc4076ae6ed84dccf4e1488b3cc918}} 
+\index{rand.\+c@{rand.\+c}!srand@{srand}}
+\index{srand@{srand}!rand.\+c@{rand.\+c}}
+\paragraph{\texorpdfstring{srand()}{srand()}}
+{\footnotesize\ttfamily void srand (\begin{DoxyParamCaption}\item[{unsigned long}]{x }\end{DoxyParamCaption})}
+
+
+
+Sets the random seed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & random seed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file rand.\+c.
+
+
+\begin{DoxyCode}
+16 \{
+17     randx = x;
+18 \}
+\end{DoxyCode}

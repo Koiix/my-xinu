@@ -1,0 +1,63 @@
+\hypertarget{memset_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memset.c File Reference}
+\label{memset_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memset.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memset.\+c}}
+
+
+This file provides memset.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{memset_8c_a8a18abbcf30b95999078b5e46f9ef70a}{memset} (void $\ast$s, int c, int n)
+\begin{DoxyCompactList}\small\item\em Place a character into first n characters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides memset. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{memset_8c}{memset.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{memset_8c_a8a18abbcf30b95999078b5e46f9ef70a}\label{memset_8c_a8a18abbcf30b95999078b5e46f9ef70a}} 
+\index{memset.\+c@{memset.\+c}!memset@{memset}}
+\index{memset@{memset}!memset.\+c@{memset.\+c}}
+\paragraph{\texorpdfstring{memset()}{memset()}}
+{\footnotesize\ttfamily void$\ast$ memset (\begin{DoxyParamCaption}\item[{void $\ast$}]{s,  }\item[{int}]{c,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Place a character into first n characters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & memory to place character into \\
+\hline
+{\em c} & character to place \\
+\hline
+{\em n} & number of times to place character \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the pointer to memory 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file memset.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keyword}{register} \textcolor{keywordtype}{int} i;
+19     \textcolor{keywordtype}{char} *cp = (\textcolor{keywordtype}{char} *)s;
+20 
+21     \textcolor{keywordflow}{for} (i = 0; i < n; i++)
+22     \{
+23         *cp = (\textcolor{keywordtype}{unsigned} char)c;
+24         cp++;
+25     \}
+26     \textcolor{keywordflow}{return} s;
+27 \}
+\end{DoxyCode}

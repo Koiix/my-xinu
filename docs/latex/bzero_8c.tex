@@ -1,0 +1,61 @@
+\hypertarget{bzero_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/bzero.c File Reference}
+\label{bzero_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/bzero.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/bzero.\+c}}
+
+
+This file provides bzero.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{bzero_8c_ad83d2153277acb467ccbf0360082285c}{bzero} (void $\ast$p, int len)
+\begin{DoxyCompactList}\small\item\em Clears a block of characters to 0s. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides bzero. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{bzero_8c}{bzero.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{bzero_8c_ad83d2153277acb467ccbf0360082285c}\label{bzero_8c_ad83d2153277acb467ccbf0360082285c}} 
+\index{bzero.\+c@{bzero.\+c}!bzero@{bzero}}
+\index{bzero@{bzero}!bzero.\+c@{bzero.\+c}}
+\paragraph{\texorpdfstring{bzero()}{bzero()}}
+{\footnotesize\ttfamily void bzero (\begin{DoxyParamCaption}\item[{void $\ast$}]{p,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Clears a block of characters to 0s. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & pointer to start of block \\
+\hline
+{\em len} & length of the block \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 14 of file bzero.\+c.
+
+
+\begin{DoxyCode}
+15 \{
+16     \textcolor{keywordtype}{int} n;
+17     \textcolor{keywordtype}{char} *pch = (\textcolor{keywordtype}{char} *)p;
+18 
+19     \textcolor{keywordflow}{if} ((n = len) <= 0)
+20     \{
+21         \textcolor{keywordflow}{return};
+22     \}
+23     \textcolor{keywordflow}{do}
+24     \{
+25         *pch++ = 0;
+26     \}
+27     \textcolor{keywordflow}{while} (--n);
+28 \}
+\end{DoxyCode}

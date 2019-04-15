@@ -1,0 +1,64 @@
+\hypertarget{memchr_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memchr.c File Reference}
+\label{memchr_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memchr.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memchr.\+c}}
+
+
+This file provides memchr.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{memchr_8c_af022f9cbcb25a050e5a40e361b196120}{memchr} (const void $\ast$cs, int c, int n)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the location in memory at which which a particular character appears. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides memchr. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{memchr_8c}{memchr.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{memchr_8c_af022f9cbcb25a050e5a40e361b196120}\label{memchr_8c_af022f9cbcb25a050e5a40e361b196120}} 
+\index{memchr.\+c@{memchr.\+c}!memchr@{memchr}}
+\index{memchr@{memchr}!memchr.\+c@{memchr.\+c}}
+\paragraph{\texorpdfstring{memchr()}{memchr()}}
+{\footnotesize\ttfamily void$\ast$ memchr (\begin{DoxyParamCaption}\item[{const void $\ast$}]{cs,  }\item[{int}]{c,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the location in memory at which which a particular character appears. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$cs} & string to search \\
+\hline
+{\em c} & character to locate \\
+\hline
+{\em n} & number of bytes to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the pointer in the string, N\+U\+LL if character not found 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file memchr.\+c.
+
+
+\begin{DoxyCode}
+18 \{
+19     \textcolor{keywordtype}{char} *cp = (\textcolor{keywordtype}{char} *)cs;
+20 
+21     \textcolor{keywordflow}{for} (; *cp != \textcolor{charliteral}{'\(\backslash\)0'}; cp++)
+22     \{
+23         \textcolor{keywordflow}{if} (*cp == (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})c)
+24         \{
+25             \textcolor{keywordflow}{return} (\textcolor{keywordtype}{void} *)cp;
+26         \}
+27     \}
+28     \textcolor{keywordflow}{return} 0;
+29 \}
+\end{DoxyCode}

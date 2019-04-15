@@ -1,0 +1,63 @@
+\hypertarget{memcpy_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcpy.c File Reference}
+\label{memcpy_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcpy.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcpy.\+c}}
+
+
+This file provides memcpy.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{memcpy_8c_aba75cc24fbb07034c475a0d4cc4f3b3a}{memcpy} (void $\ast$s, const void $\ast$ct, int n)
+\begin{DoxyCompactList}\small\item\em Memory copy, copy a location in memory from src to dst. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides memcpy. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{memcpy_8c}{memcpy.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{memcpy_8c_aba75cc24fbb07034c475a0d4cc4f3b3a}\label{memcpy_8c_aba75cc24fbb07034c475a0d4cc4f3b3a}} 
+\index{memcpy.\+c@{memcpy.\+c}!memcpy@{memcpy}}
+\index{memcpy@{memcpy}!memcpy.\+c@{memcpy.\+c}}
+\paragraph{\texorpdfstring{memcpy()}{memcpy()}}
+{\footnotesize\ttfamily void$\ast$ memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{s,  }\item[{const void $\ast$}]{ct,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Memory copy, copy a location in memory from src to dst. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & destination location \\
+\hline
+{\em ct} & source location \\
+\hline
+{\em n} & amount of data (in bytes) to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to destination 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file memcpy.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keyword}{register} \textcolor{keywordtype}{int} i;
+19     \textcolor{keywordtype}{char} *dst = (\textcolor{keywordtype}{char} *)s;
+20     \textcolor{keywordtype}{char} *src = (\textcolor{keywordtype}{char} *)ct;
+21 
+22     \textcolor{keywordflow}{for} (i = 0; i < n; i++)
+23     \{
+24         *dst++ = *src++;
+25     \}
+26     \textcolor{keywordflow}{return} s;
+27 \}
+\end{DoxyCode}

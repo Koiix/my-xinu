@@ -1,0 +1,67 @@
+\hypertarget{strncat_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncat.c File Reference}
+\label{strncat_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncat.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncat.\+c}}
+
+
+This file provides strncat.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{strncat_8c_af70714f788819be9dbf368a969be23f7}{strncat} (char $\ast$s1, const char $\ast$s2, int n)
+\begin{DoxyCompactList}\small\item\em Concatenate s2 on the end of s1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides strncat. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{strncat_8c}{strncat.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{strncat_8c_af70714f788819be9dbf368a969be23f7}\label{strncat_8c_af70714f788819be9dbf368a969be23f7}} 
+\index{strncat.\+c@{strncat.\+c}!strncat@{strncat}}
+\index{strncat@{strncat}!strncat.\+c@{strncat.\+c}}
+\paragraph{\texorpdfstring{strncat()}{strncat()}}
+{\footnotesize\ttfamily char$\ast$ strncat (\begin{DoxyParamCaption}\item[{char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Concatenate s2 on the end of s1. 
+
+S1\textquotesingle{}s space must be large enough. At most n characters are moved. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$s1} & first string \\
+\hline
+{\em $\ast$s2} & second string \\
+\hline
+{\em n} & length to concatenate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+s1 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file strncat.\+c.
+
+
+\begin{DoxyCode}
+18 \{
+19     \textcolor{keywordtype}{char} *os1;
+20 
+21     os1 = s1;
+22     \textcolor{keywordflow}{while} (*s1++)
+23         ;
+24     --s1;
+25     \textcolor{keywordflow}{while} ((*s1++ = *s2++))
+26         \textcolor{keywordflow}{if} (--n < 0)
+27         \{
+28             *--s1 = \textcolor{charliteral}{'\(\backslash\)0'};
+29             \textcolor{keywordflow}{break};
+30         \}
+31     \textcolor{keywordflow}{return} (os1);
+32 \}
+\end{DoxyCode}

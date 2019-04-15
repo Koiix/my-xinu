@@ -1,0 +1,74 @@
+\hypertarget{atol_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atol.c File Reference}
+\label{atol_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atol.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atol.\+c}}
+
+
+This file provides atol.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+long \hyperlink{atol_8c_a74dc40286bccd12ed79236b53c266b0b}{atol} (char $\ast$p)
+\begin{DoxyCompactList}\small\item\em Converts an ascii value to a long. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides atol. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{atol_8c}{atol.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{atol_8c_a74dc40286bccd12ed79236b53c266b0b}\label{atol_8c_a74dc40286bccd12ed79236b53c266b0b}} 
+\index{atol.\+c@{atol.\+c}!atol@{atol}}
+\index{atol@{atol}!atol.\+c@{atol.\+c}}
+\paragraph{\texorpdfstring{atol()}{atol()}}
+{\footnotesize\ttfamily long atol (\begin{DoxyParamCaption}\item[{char $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Converts an ascii value to a long. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & pointer to ascii string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file atol.\+c.
+
+
+\begin{DoxyCode}
+15 \{
+16     \textcolor{keywordtype}{long} n;
+17     \textcolor{keywordtype}{int} f;
+18 
+19     n = 0;
+20     f = 0;
+21     \textcolor{keywordflow}{for} (;; p++)
+22     \{
+23         \textcolor{keywordflow}{switch} (*p)
+24         \{
+25         \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}:
+26         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+27             \textcolor{keywordflow}{continue};
+28         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-'}:
+29             f++;
+30         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:
+31             p++;
+32         \}
+33         \textcolor{keywordflow}{break};
+34     \}
+35     \textcolor{keywordflow}{while} (*p >= \textcolor{charliteral}{'0'} && *p <= \textcolor{charliteral}{'9'})
+36     \{
+37         n = n * 10 + *p++ - \textcolor{charliteral}{'0'};
+38     \}
+39     \textcolor{keywordflow}{return} (f ? -n : n);
+40 \}
+\end{DoxyCode}

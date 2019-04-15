@@ -1,0 +1,65 @@
+\hypertarget{memcmp_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcmp.c File Reference}
+\label{memcmp_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcmp.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/memcmp.\+c}}
+
+
+This file provides memcmp.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{memcmp_8c_a36ee51a908aebccf97651da9a8d88616}{memcmp} (const void $\ast$s1, const void $\ast$s2, int n)
+\begin{DoxyCompactList}\small\item\em Compare memory (I\+SO C89). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides memcmp. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{memcmp_8c}{memcmp.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{memcmp_8c_a36ee51a908aebccf97651da9a8d88616}\label{memcmp_8c_a36ee51a908aebccf97651da9a8d88616}} 
+\index{memcmp.\+c@{memcmp.\+c}!memcmp@{memcmp}}
+\index{memcmp@{memcmp}!memcmp.\+c@{memcmp.\+c}}
+\paragraph{\texorpdfstring{memcmp()}{memcmp()}}
+{\footnotesize\ttfamily int memcmp (\begin{DoxyParamCaption}\item[{const void $\ast$}]{s1,  }\item[{const void $\ast$}]{s2,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Compare memory (I\+SO C89). 
+
+Assumes memory locations are same length 
+\begin{DoxyParams}{Parameters}
+{\em s1} & first memory location \\
+\hline
+{\em s2} & second memory location \\
+\hline
+{\em n} & length to compare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+s1$>$s2\+: $>$0 s1==s2\+: 0 s1$<$s2\+: $<$0 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file memcmp.\+c.
+
+
+\begin{DoxyCode}
+18 \{
+19     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *c1;
+20     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *c2;
+21 
+22     \textcolor{keywordflow}{for} (c1 = s1, c2 = s2; n > 0; n--, c1++, c2++)
+23     \{
+24         \textcolor{keywordflow}{if} (*c1 != *c2)
+25         \{
+26             \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{int})*c1) - ((int)*c2);
+27         \}
+28     \}
+29     \textcolor{keywordflow}{return} 0;
+30 \}
+\end{DoxyCode}

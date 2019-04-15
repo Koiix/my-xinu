@@ -1,0 +1,76 @@
+\hypertarget{fgets_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgets.c File Reference}
+\label{fgets_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgets.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgets.\+c}}
+
+
+This file provides fgets.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{fgets_8c_a573c8ad59f73c997adb58ea83a5a879a}{fgets} (char $\ast$s, int n, int dev)
+\begin{DoxyCompactList}\small\item\em Read a newline-\/terminated string from device (file) dev. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fgets. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fgets_8c}{fgets.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fgets_8c_a573c8ad59f73c997adb58ea83a5a879a}\label{fgets_8c_a573c8ad59f73c997adb58ea83a5a879a}} 
+\index{fgets.\+c@{fgets.\+c}!fgets@{fgets}}
+\index{fgets@{fgets}!fgets.\+c@{fgets.\+c}}
+\paragraph{\texorpdfstring{fgets()}{fgets()}}
+{\footnotesize\ttfamily char$\ast$ fgets (\begin{DoxyParamCaption}\item[{char $\ast$}]{s,  }\item[{int}]{n,  }\item[{int}]{dev }\end{DoxyParamCaption})}
+
+
+
+Read a newline-\/terminated string from device (file) dev. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$s} & buffer for result \\
+\hline
+{\em n} & maximum read length \\
+\hline
+{\em dev} & device to read from \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file fgets.\+c.
+
+
+\begin{DoxyCode}
+19 \{
+20     \textcolor{keywordtype}{int} c = 0;
+21     \textcolor{keywordtype}{char} *cs;
+22 
+23     cs = s;
+24 
+25     \textcolor{comment}{/* Read characters until maximum read length, */}
+26     \textcolor{comment}{/*  end of line, or end of file               */}
+27     \textcolor{keywordflow}{while} ((--n > 0) && ((c = getc(dev)) >= 0))
+28     \{
+29         *cs++ = c;
+30         \textcolor{keywordflow}{if} ((\textcolor{charliteral}{'\(\backslash\)n'} == c) || (\textcolor{charliteral}{'\(\backslash\)r'} == c))
+31         \{
+32             \textcolor{keywordflow}{break};
+33         \}
+34     \}
+35 
+36     \textcolor{comment}{/* Check for EOF or empty string */}
+37     \textcolor{keywordflow}{if} ((c < 0) && (cs == s))
+38     \{
+39         \textcolor{keywordflow}{return} NULL;
+40     \}
+41 
+42     \textcolor{comment}{/* Terminate string and return */}
+43     *cs++ = \textcolor{charliteral}{'\(\backslash\)0'};
+44     \textcolor{keywordflow}{return} s;
+45 \}
+\end{DoxyCode}

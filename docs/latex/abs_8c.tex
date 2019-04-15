@@ -1,0 +1,53 @@
+\hypertarget{abs_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/abs.c File Reference}
+\label{abs_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/abs.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/abs.\+c}}
+
+
+This file provides abs.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{abs_8c_a83b97b49b2135e525b55a3a7ff42036e}{abs} (int arg)
+\begin{DoxyCompactList}\small\item\em Calculates the absolute value of a number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides abs. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{abs_8c}{abs.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{abs_8c_a83b97b49b2135e525b55a3a7ff42036e}\label{abs_8c_a83b97b49b2135e525b55a3a7ff42036e}} 
+\index{abs.\+c@{abs.\+c}!abs@{abs}}
+\index{abs@{abs}!abs.\+c@{abs.\+c}}
+\paragraph{\texorpdfstring{abs()}{abs()}}
+{\footnotesize\ttfamily int abs (\begin{DoxyParamCaption}\item[{int}]{arg }\end{DoxyParamCaption})}
+
+
+
+Calculates the absolute value of a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & number to get absolute value of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+absolute value of arg 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file abs.\+c.
+
+
+\begin{DoxyCode}
+15 \{
+16     \textcolor{keywordflow}{if} (arg < 0)
+17         arg = -arg;
+18     \textcolor{keywordflow}{return} (arg);
+19 \}
+\end{DoxyCode}

@@ -1,0 +1,60 @@
+\hypertarget{fputc_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputc.c File Reference}
+\label{fputc_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputc.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputc.\+c}}
+
+
+This file provides fputc.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fputc_8c_a32f19bdc96eb7c1eda177e01344f8c74}{fputc} (int c, int dev)
+\begin{DoxyCompactList}\small\item\em Write a character string to a device (file) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fputc. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fputc_8c}{fputc.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fputc_8c_a32f19bdc96eb7c1eda177e01344f8c74}\label{fputc_8c_a32f19bdc96eb7c1eda177e01344f8c74}} 
+\index{fputc.\+c@{fputc.\+c}!fputc@{fputc}}
+\index{fputc@{fputc}!fputc.\+c@{fputc.\+c}}
+\paragraph{\texorpdfstring{fputc()}{fputc()}}
+{\footnotesize\ttfamily int fputc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int}]{dev }\end{DoxyParamCaption})}
+
+
+
+Write a character string to a device (file) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & string to write \\
+\hline
+{\em dev} & device to write to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character written, E\+OF if error 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file fputc.\+c.
+
+
+\begin{DoxyCode}
+21 \{
+22     \textcolor{keywordflow}{if} (SYSERR == (\textcolor{keywordtype}{int})putc(dev, c))
+23     \{
+24         \textcolor{keywordflow}{return} EOF;
+25     \}
+26     \textcolor{keywordflow}{else}
+27     \{
+28         \textcolor{keywordflow}{return} c;
+29     \}
+30 \}
+\end{DoxyCode}

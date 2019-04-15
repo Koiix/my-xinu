@@ -1,0 +1,61 @@
+\hypertarget{structethloop}{}\subsection{ethloop Struct Reference}
+\label{structethloop}\index{ethloop@{ethloop}}
+
+
+Loopback device control block.  
+
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structethloop_a19f8184f8019cd8cf85d55ac81d1c68c}\label{structethloop_a19f8184f8019cd8cf85d55ac81d1c68c}} 
+int \hyperlink{structethloop_a19f8184f8019cd8cf85d55ac81d1c68c}{state}
+\begin{DoxyCompactList}\small\item\em device state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_ab07150f4e07c316af259952d512c256b}\label{structethloop_ab07150f4e07c316af259952d512c256b}} 
+struct \hyperlink{structdentry}{dentry} $\ast$ \hyperlink{structethloop_ab07150f4e07c316af259952d512c256b}{dev}
+\begin{DoxyCompactList}\small\item\em device table entry \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a210b4a8d5628a2c2f31c3feecf8ad464}\label{structethloop_a210b4a8d5628a2c2f31c3feecf8ad464}} 
+int \hyperlink{structethloop_a210b4a8d5628a2c2f31c3feecf8ad464}{poolid}
+\begin{DoxyCompactList}\small\item\em poolid for the buffer pool \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_ad0cbcdb6c773eadd12ace3c17962de83}\label{structethloop_ad0cbcdb6c773eadd12ace3c17962de83}} 
+byte \hyperlink{structethloop_ad0cbcdb6c773eadd12ace3c17962de83}{flags}
+\begin{DoxyCompactList}\small\item\em flags \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a9b0bcc49c4ac9dce3f34df3611f2c964}\label{structethloop_a9b0bcc49c4ac9dce3f34df3611f2c964}} 
+int \hyperlink{structethloop_a9b0bcc49c4ac9dce3f34df3611f2c964}{index}
+\begin{DoxyCompactList}\small\item\em index of first packet in buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a9d5579115ca79dc3c2f6dbb7925ad981}\label{structethloop_a9d5579115ca79dc3c2f6dbb7925ad981}} 
+sid32 \hyperlink{structethloop_a9d5579115ca79dc3c2f6dbb7925ad981}{sem}
+\begin{DoxyCompactList}\small\item\em number of packets in buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a0a366d583c2d8079bc8c6066b587f1a8}\label{structethloop_a0a366d583c2d8079bc8c6066b587f1a8}} 
+int \hyperlink{structethloop_a0a366d583c2d8079bc8c6066b587f1a8}{count}
+\begin{DoxyCompactList}\small\item\em number of packets in buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_abdb3f55941ed6c8d2d1d5f8299304ad7}\label{structethloop_abdb3f55941ed6c8d2d1d5f8299304ad7}} 
+char $\ast$ \hyperlink{structethloop_abdb3f55941ed6c8d2d1d5f8299304ad7}{buffer} \mbox{[}E\+L\+O\+O\+P\+\_\+\+N\+B\+UF\mbox{]}
+\begin{DoxyCompactList}\small\item\em input buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_af6b7944024fb34963fa5d295dac2ce84}\label{structethloop_af6b7944024fb34963fa5d295dac2ce84}} 
+int \hyperlink{structethloop_af6b7944024fb34963fa5d295dac2ce84}{pktlen} \mbox{[}E\+L\+O\+O\+P\+\_\+\+N\+B\+UF\mbox{]}
+\begin{DoxyCompactList}\small\item\em length of packet in buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a056273dac5394bf433be9c950342a1b8}\label{structethloop_a056273dac5394bf433be9c950342a1b8}} 
+sid32 \hyperlink{structethloop_a056273dac5394bf433be9c950342a1b8}{hsem}
+\begin{DoxyCompactList}\small\item\em number of held packets \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a67eb4c1f2de7fb2f97992411cc57b504}\label{structethloop_a67eb4c1f2de7fb2f97992411cc57b504}} 
+char $\ast$ \hyperlink{structethloop_a67eb4c1f2de7fb2f97992411cc57b504}{hold}
+\begin{DoxyCompactList}\small\item\em hold buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_a163c6fe8a940fcb9d236b8abb9d7fd2c}\label{structethloop_a163c6fe8a940fcb9d236b8abb9d7fd2c}} 
+int \hyperlink{structethloop_a163c6fe8a940fcb9d236b8abb9d7fd2c}{holdlen}
+\begin{DoxyCompactList}\small\item\em length of packet in hold buffer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structethloop_aea5d1011495ce7f63b382fb04879b267}\label{structethloop_aea5d1011495ce7f63b382fb04879b267}} 
+uint32 \hyperlink{structethloop_aea5d1011495ce7f63b382fb04879b267}{nout}
+\begin{DoxyCompactList}\small\item\em number of packets written \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Loopback device control block. 
+
+Definition at line 32 of file ethloop.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/u/riker/u88/kreiderj/os/xinu-\/x86/include/\hyperlink{ethloop_8h}{ethloop.\+h}\end{DoxyCompactItemize}

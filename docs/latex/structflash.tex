@@ -1,0 +1,69 @@
+\hypertarget{structflash}{}\subsection{flash Struct Reference}
+\label{structflash}\index{flash@{flash}}
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structflash_ac7d8e60183550c0b4adabb41e400bee8}\label{structflash_ac7d8e60183550c0b4adabb41e400bee8}} 
+struct \hyperlink{structdentry}{dentry} $\ast$ \hyperlink{structflash_ac7d8e60183550c0b4adabb41e400bee8}{device}
+\begin{DoxyCompactList}\small\item\em flash entry in dev structure \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a142e6197e8137ac008033ad467e9bf40}\label{structflash_a142e6197e8137ac008033ad467e9bf40}} 
+byte \hyperlink{structflash_a142e6197e8137ac008033ad467e9bf40}{commands}
+\begin{DoxyCompactList}\small\item\em command set the interface uses \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a6310de3fdc10193bcaf31cd79e040265}\label{structflash_a6310de3fdc10193bcaf31cd79e040265}} 
+uint32 \hyperlink{structflash_a6310de3fdc10193bcaf31cd79e040265}{base}
+\begin{DoxyCompactList}\small\item\em base address for flash memory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a229310e5bcb3bb8dbed640c3a136653c}\label{structflash_a229310e5bcb3bb8dbed640c3a136653c}} 
+sid32 \hyperlink{structflash_a229310e5bcb3bb8dbed640c3a136653c}{lock}
+\begin{DoxyCompactList}\small\item\em lock for execution flash operations \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a92d2ba0bad7428d3f82bba6d4e36c87a}\label{structflash_a92d2ba0bad7428d3f82bba6d4e36c87a}} 
+uint32 \hyperlink{structflash_a92d2ba0bad7428d3f82bba6d4e36c87a}{size}
+\begin{DoxyCompactList}\small\item\em size (in bytes) of flash memory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_af9cc83d2e2ec4c398985b26e46c2a683}\label{structflash_af9cc83d2e2ec4c398985b26e46c2a683}} 
+byte \hyperlink{structflash_af9cc83d2e2ec4c398985b26e46c2a683}{mode}
+\begin{DoxyCompactList}\small\item\em current mode of flash \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_ac99fe0a8664d6f7faf46427f9cbaebff}\label{structflash_ac99fe0a8664d6f7faf46427f9cbaebff}} 
+uint16 \hyperlink{structflash_ac99fe0a8664d6f7faf46427f9cbaebff}{nregions}
+\begin{DoxyCompactList}\small\item\em number of regions on device \end{DoxyCompactList}\item 
+struct \hyperlink{structflash__region}{flash\+\_\+region} \hyperlink{structflash_a07ad4035a0950608617ae37263272b6d}{regions} \mbox{[}M\+A\+X\+\_\+\+R\+E\+G\+I\+O\+NS\mbox{]}
+\begin{DoxyCompactList}\small\item\em region info. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a4f2e2d6773af895662fdcd960447f67c}\label{structflash_a4f2e2d6773af895662fdcd960447f67c}} 
+uint32 \hyperlink{structflash_a4f2e2d6773af895662fdcd960447f67c}{log\+\_\+size}
+\begin{DoxyCompactList}\small\item\em size of logical disk blocks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a26c3d3d516020c8159895ef989357cb7}\label{structflash_a26c3d3d516020c8159895ef989357cb7}} 
+uint32 \hyperlink{structflash_a26c3d3d516020c8159895ef989357cb7}{nlog\+\_\+blocks}
+\begin{DoxyCompactList}\small\item\em number of logical blocks on disk \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_ad2c7622acd8164c1e59975d19afec942}\label{structflash_ad2c7622acd8164c1e59975d19afec942}} 
+struct \hyperlink{structflash__block}{flash\+\_\+block} \hyperlink{structflash_ad2c7622acd8164c1e59975d19afec942}{erase\+\_\+blocks} \mbox{[}\hyperlink{flash_8h_acdca95641344ccf24c13430916c116da}{M\+A\+X\+\_\+\+L\+I\+V\+E\+\_\+\+B\+L\+O\+C\+KS}\mbox{]}
+\begin{DoxyCompactList}\small\item\em list of open blocks on flash device \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structflash_a7a7c52637b016acaec07f76cf62f59e0}\label{structflash_a7a7c52637b016acaec07f76cf62f59e0}} 
+byte \hyperlink{structflash_a7a7c52637b016acaec07f76cf62f59e0}{curr\+\_\+block}
+\begin{DoxyCompactList}\small\item\em offset of the oldest block stored \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 76 of file flash.\+h.
+
+
+
+\subsubsection{Field Documentation}
+\mbox{\Hypertarget{structflash_a07ad4035a0950608617ae37263272b6d}\label{structflash_a07ad4035a0950608617ae37263272b6d}} 
+\index{flash@{flash}!regions@{regions}}
+\index{regions@{regions}!flash@{flash}}
+\paragraph{\texorpdfstring{regions}{regions}}
+{\footnotesize\ttfamily struct \hyperlink{structflash__region}{flash\+\_\+region} flash\+::regions\mbox{[}M\+A\+X\+\_\+\+R\+E\+G\+I\+O\+NS\mbox{]}}
+
+
+
+region info. 
+
+
+
+Definition at line 85 of file flash.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/u/riker/u88/kreiderj/os/xinu-\/x86/include/\hyperlink{flash_8h}{flash.\+h}\end{DoxyCompactItemize}

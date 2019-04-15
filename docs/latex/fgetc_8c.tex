@@ -1,0 +1,60 @@
+\hypertarget{fgetc_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgetc.c File Reference}
+\label{fgetc_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgetc.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fgetc.\+c}}
+
+
+This file provides fgetc.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fgetc_8c_a331dd7c56def5258f0385d1e5f9220c1}{fgetc} (int dev)
+\begin{DoxyCompactList}\small\item\em Read a character from a device (file) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fgetc. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fgetc_8c}{fgetc.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fgetc_8c_a331dd7c56def5258f0385d1e5f9220c1}\label{fgetc_8c_a331dd7c56def5258f0385d1e5f9220c1}} 
+\index{fgetc.\+c@{fgetc.\+c}!fgetc@{fgetc}}
+\index{fgetc@{fgetc}!fgetc.\+c@{fgetc.\+c}}
+\paragraph{\texorpdfstring{fgetc()}{fgetc()}}
+{\footnotesize\ttfamily int fgetc (\begin{DoxyParamCaption}\item[{int}]{dev }\end{DoxyParamCaption})}
+
+
+
+Read a character from a device (file) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & device to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character read, E\+OF if error 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file fgetc.\+c.
+
+
+\begin{DoxyCode}
+19 \{
+20     \textcolor{keywordtype}{int} result = (int)getc(dev);
+21 
+22     \textcolor{keywordflow}{if} (0 > result)
+23     \{
+24         \textcolor{keywordflow}{return} EOF;
+25     \}
+26     \textcolor{keywordflow}{else}
+27     \{
+28         \textcolor{keywordflow}{return} result;
+29     \}
+30 \}
+\end{DoxyCode}

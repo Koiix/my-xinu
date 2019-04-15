@@ -1,0 +1,58 @@
+\hypertarget{sscanf_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sscanf.c File Reference}
+\label{sscanf_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sscanf.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sscanf.\+c}}
+
+
+This file provides sscanf, sgetch, sungetch.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sscanf_8c_a25753e5bb6079e146c71a7bbd8a9696c}{sscanf} (char $\ast$str, char $\ast$fmt, int args)
+\begin{DoxyCompactList}\small\item\em Read from a string according to a format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides sscanf, sgetch, sungetch. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{sscanf_8c}{sscanf.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{sscanf_8c_a25753e5bb6079e146c71a7bbd8a9696c}\label{sscanf_8c_a25753e5bb6079e146c71a7bbd8a9696c}} 
+\index{sscanf.\+c@{sscanf.\+c}!sscanf@{sscanf}}
+\index{sscanf@{sscanf}!sscanf.\+c@{sscanf.\+c}}
+\paragraph{\texorpdfstring{sscanf()}{sscanf()}}
+{\footnotesize\ttfamily int sscanf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{fmt,  }\item[{int}]{args }\end{DoxyParamCaption})}
+
+
+
+Read from a string according to a format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$str} & string to read from \\
+\hline
+{\em $\ast$fmt} & format string \\
+\hline
+{\em args} & number of arguments in format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result of \+\_\+doscan 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file sscanf.\+c.
+
+
+\begin{DoxyCode}
+25 \{
+26     \textcolor{keywordtype}{char} *s;
+27 
+28     s = str;
+29     \textcolor{keywordflow}{return} (\_doscan(fmt, (\textcolor{keywordtype}{int} **)&args, sgetch, sungetch, 0, (\textcolor{keywordtype}{int})&s));
+30 \}
+\end{DoxyCode}

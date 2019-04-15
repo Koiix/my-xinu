@@ -1,0 +1,77 @@
+\hypertarget{strstr_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strstr.c File Reference}
+\label{strstr_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strstr.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strstr.\+c}}
+
+
+This file provides strstr.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{strstr_8c_aca63cbbde2ae2cadd501226532c02ece}{strstr} (const char $\ast$cs, const char $\ast$ct)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the location in a string at which a particular string appears. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides strstr. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{strstr_8c}{strstr.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{strstr_8c_aca63cbbde2ae2cadd501226532c02ece}\label{strstr_8c_aca63cbbde2ae2cadd501226532c02ece}} 
+\index{strstr.\+c@{strstr.\+c}!strstr@{strstr}}
+\index{strstr@{strstr}!strstr.\+c@{strstr.\+c}}
+\paragraph{\texorpdfstring{strstr()}{strstr()}}
+{\footnotesize\ttfamily char$\ast$ strstr (\begin{DoxyParamCaption}\item[{const char $\ast$}]{cs,  }\item[{const char $\ast$}]{ct }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the location in a string at which a particular string appears. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cs} & string to search \\
+\hline
+{\em ct} & string to locate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the pointer in the string, N\+U\+LL if string not found 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file strstr.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keywordtype}{char} *cq;
+19     \textcolor{keywordtype}{char} *cr;
+20 
+21     \textcolor{keywordflow}{for} (; *cs != \textcolor{charliteral}{'\(\backslash\)0'}; cs++)
+22     \{
+23         \textcolor{keywordflow}{if} (*cs == *ct)
+24         \{
+25             cq = (\textcolor{keywordtype}{char} *)cs;
+26             cr = (\textcolor{keywordtype}{char} *)ct;
+27             \textcolor{keywordflow}{while} ((*cq != \textcolor{charliteral}{'\(\backslash\)0'}) && (*cr != \textcolor{charliteral}{'\(\backslash\)0'}))
+28             \{
+29                 \textcolor{keywordflow}{if} (*cq != *cr)
+30                 \{
+31                     \textcolor{keywordflow}{break};
+32                 \}
+33                 cq++;
+34                 cr++;
+35             \}
+36             \textcolor{keywordflow}{if} (\textcolor{charliteral}{'\(\backslash\)0'} == *cr)
+37             \{
+38                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char} *)cs;
+39             \}
+40         \}
+41     \}
+42     \textcolor{keywordflow}{return} 0;
+43 \}
+\end{DoxyCode}

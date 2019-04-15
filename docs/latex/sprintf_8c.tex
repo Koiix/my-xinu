@@ -1,0 +1,309 @@
+\hypertarget{sprintf_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sprintf.c File Reference}
+\label{sprintf_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sprintf.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/sprintf.\+c}}
+
+
+This file provides sprintf.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{sprintf_8c_ade145de37911b31ab6f3dc56ae98ca0e}{\+\_\+fdoprnt} (char $\ast$, va\+\_\+list, int($\ast$func)(int, int), int)
+\begin{DoxyCompactList}\small\item\em Format and write output using \textquotesingle{}func\textquotesingle{} to write characters. \end{DoxyCompactList}\item 
+int \hyperlink{sprintf_8c_aaff5e841d4f2d6144ad37e692d33ea51}{sprintf} (char $\ast$str, char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em Format arguments and place output in a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides sprintf. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{sprintf_8c}{sprintf.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{sprintf_8c_ade145de37911b31ab6f3dc56ae98ca0e}\label{sprintf_8c_ade145de37911b31ab6f3dc56ae98ca0e}} 
+\index{sprintf.\+c@{sprintf.\+c}!\+\_\+fdoprnt@{\+\_\+fdoprnt}}
+\index{\+\_\+fdoprnt@{\+\_\+fdoprnt}!sprintf.\+c@{sprintf.\+c}}
+\paragraph{\texorpdfstring{\+\_\+fdoprnt()}{\_fdoprnt()}}
+{\footnotesize\ttfamily void \+\_\+fdoprnt (\begin{DoxyParamCaption}\item[{char $\ast$}]{fmt,  }\item[{va\+\_\+list}]{ap,  }\item[{int($\ast$)(int, int)}]{func,  }\item[{int}]{farg }\end{DoxyParamCaption})}
+
+
+
+Format and write output using \textquotesingle{}func\textquotesingle{} to write characters. 
+
+(Patched for Sun3 by Shawn Ostermann.) All arguments passed as 4 bytes, long==int. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$fmt} & format string \\
+\hline
+{\em ap} & list of values \\
+\hline
+{\em $\ast$func} & character output function \\
+\hline
+{\em farg} & argument for character output function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file fdoprnt.\+c.
+
+
+\begin{DoxyCode}
+29 \{
+30     \textcolor{keywordtype}{int} c;
+31     \textcolor{keywordtype}{int} i;
+32     \textcolor{keywordtype}{int} f;                      \textcolor{comment}{/* The format character (comes after %) */}
+33     \textcolor{keywordtype}{char} *str;                  \textcolor{comment}{/* Running pointer in string            */}
+34     \textcolor{keywordtype}{char} \textcolor{keywordtype}{string}[20];            \textcolor{comment}{/* The string str points to this output */}
+35 
+36     \textcolor{comment}{/*  from number conversion              */}
+37     \textcolor{keywordtype}{int} length;                 \textcolor{comment}{/* Length of string "str"               */}
+38     \textcolor{keywordtype}{char} fill;                  \textcolor{comment}{/* Fill character (' ' or '0')          */}
+39     \textcolor{keywordtype}{int} leftjust;               \textcolor{comment}{/* 0 = right-justified, else left-just  */}
+40     \textcolor{keywordtype}{int} fmax, fmin;             \textcolor{comment}{/* Field specifications % MIN . MAX s   */}
+41     \textcolor{keywordtype}{int} leading;                \textcolor{comment}{/* No. of leading/trailing fill chars   */}
+42     \textcolor{keywordtype}{char} sign;                  \textcolor{comment}{/* Set to '-' for negative decimals     */}
+43     \textcolor{keywordtype}{char} digit1;                \textcolor{comment}{/* Offset to add to first numeric digit */}
+44     \textcolor{keywordtype}{long} larg;
+45 
+46     \textcolor{keywordflow}{for} (;;)
+47     \{
+48         \textcolor{comment}{/* Echo characters until '%' or end of fmt string */}
+49         \textcolor{keywordflow}{while} ((c = *fmt++) != \textcolor{charliteral}{'%'})
+50         \{
+51             \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)0'})
+52             \{
+53                 \textcolor{keywordflow}{return};
+54             \}
+55             (*func) (farg, c);
+56         \}
+57         \textcolor{comment}{/* Echo "...%%..." as '%' */}
+58         \textcolor{keywordflow}{if} (*fmt == \textcolor{charliteral}{'%'})
+59         \{
+60             (*func) (farg, *fmt++);
+61             \textcolor{keywordflow}{continue};
+62         \}
+63         \textcolor{comment}{/* Check for "%-..." == Left-justified output */}
+64         \textcolor{keywordflow}{if} ((leftjust = ((*fmt == \textcolor{charliteral}{'-'})) ? 1 : 0))
+65         \{
+66             fmt++;
+67         \}
+68         \textcolor{comment}{/* Allow for zero-filled numeric outputs ("%0...") */}
+69         fill = (*fmt == \textcolor{charliteral}{'0'}) ? *fmt++ : \textcolor{charliteral}{' '};
+70         \textcolor{comment}{/* Allow for minimum field width specifier for %d,u,x,o,c,s */}
+71         \textcolor{comment}{/* Also allow %* for variable width (%0* as well)       */}
+72         fmin = 0;
+73         \textcolor{keywordflow}{if} (*fmt == \textcolor{charliteral}{'*'})
+74         \{
+75             fmin = va\_arg(ap, \textcolor{keywordtype}{int});
+76 
+77             ++fmt;
+78         \}
+79         \textcolor{keywordflow}{else}
+80         \{
+81             \textcolor{keywordflow}{while} (\textcolor{charliteral}{'0'} <= *fmt && *fmt <= \textcolor{charliteral}{'9'})
+82             \{
+83                 fmin = fmin * 10 + *fmt++ - \textcolor{charliteral}{'0'};
+84             \}
+85         \}
+86         \textcolor{comment}{/* Allow for maximum string width for %s */}
+87         fmax = 0;
+88         \textcolor{keywordflow}{if} (*fmt == \textcolor{charliteral}{'.'})
+89         \{
+90             \textcolor{keywordflow}{if} (*(++fmt) == \textcolor{charliteral}{'*'})
+91             \{
+92                 fmax = va\_arg(ap, \textcolor{keywordtype}{int});
+93                 ++fmt;
+94             \}
+95             \textcolor{keywordflow}{else}
+96             \{
+97                 \textcolor{keywordflow}{while} (\textcolor{charliteral}{'0'} <= *fmt && *fmt <= \textcolor{charliteral}{'9'})
+98                 \{
+99                     fmax = fmax * 10 + *fmt++ - \textcolor{charliteral}{'0'};
+100                 \}
+101             \}
+102         \}
+103 
+104         str = string;
+105         \textcolor{keywordflow}{if} ((f = *fmt++) == \textcolor{charliteral}{'\(\backslash\)0'})
+106         \{
+107             (*func) (farg, \textcolor{charliteral}{'%'});
+108             \textcolor{keywordflow}{return};
+109         \}
+110         sign = \textcolor{charliteral}{'\(\backslash\)0'};            \textcolor{comment}{/* sign == '-' for negative decimal */}
+111 
+112         \textcolor{keywordflow}{switch} (f)
+113         \{
+114         \textcolor{keywordflow}{case} \textcolor{charliteral}{'c'}:
+115             \textcolor{keywordtype}{string}[0] = va\_arg(ap, \textcolor{keywordtype}{int});
+116             \textcolor{keywordtype}{string}[1] = \textcolor{charliteral}{'\(\backslash\)0'};
+117             fmax = 0;
+118             fill = \textcolor{charliteral}{' '};
+119             \textcolor{keywordflow}{break};
+120 
+121         \textcolor{keywordflow}{case} \textcolor{charliteral}{'s'}:
+122             str = va\_arg(ap, \textcolor{keywordtype}{char} *);
+123 
+124             \textcolor{keywordflow}{if} (NULL == str)
+125             \{
+126                 str = \textcolor{stringliteral}{"(null)"};
+127             \}
+128             fill = \textcolor{charliteral}{' '};
+129             \textcolor{keywordflow}{break};
+130 
+131         \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:
+132             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+133 
+134             \textcolor{keywordflow}{if} (larg < 0)
+135             \{
+136                 sign = \textcolor{charliteral}{'-'};
+137                 larg = -larg;
+138             \}
+139             \_prtl10(larg, str);
+140             \textcolor{keywordflow}{break};
+141 
+142         \textcolor{keywordflow}{case} \textcolor{charliteral}{'u'}:
+143             digit1 = \textcolor{charliteral}{'\(\backslash\)0'};
+144             \textcolor{comment}{/* "negative" longs in unsigned format  */}
+145             \textcolor{comment}{/* can't be computed with long division */}
+146             \textcolor{comment}{/* convert *args to "positive", digit1  */}
+147             \textcolor{comment}{/* = how much to add back afterwards    */}
+148             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+149 
+150             \textcolor{keywordflow}{while} (larg < 0)
+151             \{
+152                 larg -= 1000000000L;
+153                 ++digit1;
+154             \}
+155             \_prtl10(larg, str);
+156             str[0] += digit1;
+157             fmax = 0;
+158             \textcolor{keywordflow}{break};
+159 
+160         \textcolor{keywordflow}{case} \textcolor{charliteral}{'o'}:
+161             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+162 
+163             \_prtl8(larg, str);
+164             fmax = 0;
+165             \textcolor{keywordflow}{break};
+166 
+167         \textcolor{keywordflow}{case} \textcolor{charliteral}{'X'}:
+168             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+169 
+170             \_prtX16(larg, str);
+171             fmax = 0;
+172             \textcolor{keywordflow}{break};
+173 
+174         \textcolor{keywordflow}{case} \textcolor{charliteral}{'x'}:
+175             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+176 
+177             \_prtl16(larg, str);
+178             fmax = 0;
+179             \textcolor{keywordflow}{break};
+180 
+181         \textcolor{keywordflow}{case} \textcolor{charliteral}{'b'}:
+182             larg = va\_arg(ap, \textcolor{keywordtype}{long});
+183 
+184             \_prtl2(larg, str);
+185             fmax = 0;
+186             \textcolor{keywordflow}{break};
+187 
+188         \textcolor{keywordflow}{default}:
+189             (*func) (farg, f);
+190             \textcolor{keywordflow}{break};
+191         \}
+192         \textcolor{keywordflow}{for} (length = 0; str[length] != \textcolor{charliteral}{'\(\backslash\)0'}; length++)
+193         \{;
+194         \}
+195         \textcolor{keywordflow}{if} (fmin > MAXSTR || fmin < 0)
+196         \{
+197             fmin = 0;
+198         \}
+199         \textcolor{keywordflow}{if} (fmax > MAXSTR || fmax < 0)
+200         \{
+201             fmax = 0;
+202         \}
+203         leading = 0;
+204         \textcolor{keywordflow}{if} (fmax != 0 || fmin != 0)
+205         \{
+206             \textcolor{keywordflow}{if} (fmax != 0)
+207             \{
+208                 \textcolor{keywordflow}{if} (length > fmax)
+209                 \{
+210                     length = fmax;
+211                 \}
+212             \}
+213             \textcolor{keywordflow}{if} (fmin != 0)
+214             \{
+215                 leading = fmin - length;
+216             \}
+217             \textcolor{keywordflow}{if} (sign == \textcolor{charliteral}{'-'})
+218             \{
+219                 --leading;
+220             \}
+221         \}
+222         \textcolor{keywordflow}{if} (sign == \textcolor{charliteral}{'-'} && fill == \textcolor{charliteral}{'0'})
+223         \{
+224             (*func) (farg, sign);
+225         \}
+226         \textcolor{keywordflow}{if} (leftjust == 0)
+227         \{
+228             \textcolor{keywordflow}{for} (i = 0; i < leading; i++)
+229             \{
+230                 (*func) (farg, fill);
+231             \}
+232         \}
+233         \textcolor{keywordflow}{if} (sign == \textcolor{charliteral}{'-'} && fill == \textcolor{charliteral}{' '})
+234         \{
+235             (*func) (farg, sign);
+236         \}
+237         \textcolor{keywordflow}{for} (i = 0; i < length; i++)
+238         \{
+239             (*func) (farg, str[i]);
+240         \}
+241         \textcolor{keywordflow}{if} (leftjust != 0)
+242         \{
+243             \textcolor{keywordflow}{for} (i = 0; i < leading; i++)
+244                 (*func) (farg, fill);
+245         \}
+246     \}
+247 
+248 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{sprintf_8c_aaff5e841d4f2d6144ad37e692d33ea51}\label{sprintf_8c_aaff5e841d4f2d6144ad37e692d33ea51}} 
+\index{sprintf.\+c@{sprintf.\+c}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!sprintf.\+c@{sprintf.\+c}}
+\paragraph{\texorpdfstring{sprintf()}{sprintf()}}
+{\footnotesize\ttfamily int sprintf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Format arguments and place output in a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$str} & output string \\
+\hline
+{\em $\ast$fmt} & format string \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 19 of file sprintf.\+c.
+
+
+\begin{DoxyCode}
+20 \{
+21     va\_list ap;
+22     \textcolor{keywordtype}{char} *s;
+23 
+24     s = str;
+25     va\_start(ap, fmt);
+26     \hyperlink{sprintf_8c_ade145de37911b31ab6f3dc56ae98ca0e}{\_fdoprnt}(fmt, ap, sprntf, (\textcolor{keywordtype}{int})&s);
+27     va\_end(ap);
+28     *s++ = \textcolor{charliteral}{'\(\backslash\)0'};
+29 
+30     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{int})str);
+31 \}
+\end{DoxyCode}

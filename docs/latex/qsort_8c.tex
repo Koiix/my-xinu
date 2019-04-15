@@ -1,0 +1,56 @@
+\hypertarget{qsort_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/qsort.c File Reference}
+\label{qsort_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/qsort.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/qsort.\+c}}
+
+
+This file provides qsort, qs1, qsexc, qstexc.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{qsort_8c_a29816b3de400b63fbde83b035342bc0c}{qsort} (char $\ast$a, unsigned n, int es, int($\ast$fc)(char $\ast$, char $\ast$))
+\begin{DoxyCompactList}\small\item\em Performs a quick sort. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides qsort, qs1, qsexc, qstexc. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{qsort_8c}{qsort.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{qsort_8c_a29816b3de400b63fbde83b035342bc0c}\label{qsort_8c_a29816b3de400b63fbde83b035342bc0c}} 
+\index{qsort.\+c@{qsort.\+c}!qsort@{qsort}}
+\index{qsort@{qsort}!qsort.\+c@{qsort.\+c}}
+\paragraph{\texorpdfstring{qsort()}{qsort()}}
+{\footnotesize\ttfamily void qsort (\begin{DoxyParamCaption}\item[{char $\ast$}]{a,  }\item[{unsigned}]{n,  }\item[{int}]{es,  }\item[{int($\ast$)(char $\ast$, char $\ast$)}]{fc }\end{DoxyParamCaption})}
+
+
+
+Performs a quick sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$a} & array to sort \\
+\hline
+{\em n} & length of the array \\
+\hline
+{\em es} & pivot \\
+\hline
+{\em ($\ast$fc)()} & comparison function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file qsort.\+c.
+
+
+\begin{DoxyCode}
+23 \{
+24     qscmp = fc;
+25     qses = es;
+26     qs1(a, a + n * es);
+27 \}
+\end{DoxyCode}

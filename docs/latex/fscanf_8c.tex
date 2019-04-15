@@ -1,0 +1,195 @@
+\hypertarget{fscanf_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fscanf.c File Reference}
+\label{fscanf_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fscanf.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fscanf.\+c}}
+
+
+This file provides fscanf, getch, ungetch.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fscanf_8c_a7605eb7fd6f99ccc45fc80ba2d46a466}{\+\_\+doscan} (register char $\ast$, register int $\ast$$\ast$, int($\ast$getc)(int, int), int($\ast$ungetc)(int, int), int, int)
+\begin{DoxyCompactList}\small\item\em Scan and recognize input according to a format. \end{DoxyCompactList}\item 
+int \hyperlink{fscanf_8c_a7664caa54eef93f7c61d65e931ef1803}{fscanf} (int dev, char $\ast$fmt, int args)
+\begin{DoxyCompactList}\small\item\em Read from a device (file) according to a format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fscanf, getch, ungetch. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fscanf_8c}{fscanf.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fscanf_8c_a7605eb7fd6f99ccc45fc80ba2d46a466}\label{fscanf_8c_a7605eb7fd6f99ccc45fc80ba2d46a466}} 
+\index{fscanf.\+c@{fscanf.\+c}!\+\_\+doscan@{\+\_\+doscan}}
+\index{\+\_\+doscan@{\+\_\+doscan}!fscanf.\+c@{fscanf.\+c}}
+\paragraph{\texorpdfstring{\+\_\+doscan()}{\_doscan()}}
+{\footnotesize\ttfamily int \+\_\+doscan (\begin{DoxyParamCaption}\item[{register char $\ast$}]{fmt,  }\item[{register int $\ast$$\ast$}]{argp,  }\item[{int($\ast$)(int, int)}]{getch,  }\item[{int($\ast$)(int, int)}]{ungetch,  }\item[{int}]{arg1,  }\item[{int}]{arg2 }\end{DoxyParamCaption})}
+
+
+
+Scan and recognize input according to a format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$fmt} & format string for the scanf \\
+\hline
+{\em $\ast$$\ast$argp} & arguments to scanf \\
+\hline
+{\em getch} & function to unget a character \\
+\hline
+{\em ungetch} & function to unget a character \\
+\hline
+{\em arg1} & 1st argument to getch/ungetch \\
+\hline
+{\em arg2} & 2nd argument to getch/ungetch \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file doscan.\+c.
+
+
+\begin{DoxyCode}
+52 \{
+53     \textcolor{keyword}{register} \textcolor{keywordtype}{int} ch;
+54     \textcolor{keywordtype}{int} nmatch, len, ch1;
+55     \textcolor{keywordtype}{int} **ptr, fileended, size;
+56 
+57     nmatch = 0;
+58     fileended = 0;
+59     \textcolor{keywordflow}{for} (;;)
+60     \{
+61         \textcolor{keywordflow}{switch} (ch = *fmt++)
+62         \{
+63         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)0'}:
+64             \textcolor{keywordflow}{return} (nmatch);
+65         \textcolor{keywordflow}{case} \textcolor{charliteral}{'%'}:
+66             \textcolor{keywordflow}{if} ((ch = *fmt++) == \textcolor{charliteral}{'%'})
+67             \{
+68                 \textcolor{keywordflow}{goto} def;
+69             \}
+70             ptr = 0;
+71             \textcolor{keywordflow}{if} (ch != \textcolor{charliteral}{'*'})
+72             \{
+73                 ptr = argp++;
+74             \}
+75             \textcolor{keywordflow}{else}
+76             \{
+77                 ch = *fmt++;
+78             \}
+79             len = 0;
+80             size = REGULAR;
+81             \textcolor{keywordflow}{while} (isdigit(ch))
+82             \{
+83                 len = len * 10 + ch - \textcolor{charliteral}{'0'};
+84                 ch = *fmt++;
+85             \}
+86             \textcolor{keywordflow}{if} (len == 0)
+87             \{
+88                 len = 30000;
+89             \}
+90             \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'l'})
+91             \{
+92                 ch = *fmt++;
+93                 size = LONG;
+94             \}
+95             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'h'})
+96             \{
+97                 size = SHORT;
+98                 ch = *fmt++;
+99             \}
+100             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'['})
+101             \{
+102                 fmt = \_getccl(fmt);
+103             \}
+104             \textcolor{keywordflow}{if} (isupper(ch))
+105             \{
+106                 ch = tolower(ch);
+107                 size = LONG;
+108             \}
+109             \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'\(\backslash\)0'})
+110             \{
+111                 \textcolor{keywordflow}{return} (-1);
+112             \}
+113             \textcolor{keywordflow}{if} (\_innum
+114                 (ptr, ch, len, size,
+115                  getch, ungetch, arg1, arg2, &fileended) && ptr)
+116             \{
+117                 nmatch++;
+118             \}
+119             \textcolor{keywordflow}{if} (fileended)
+120             \{
+121                 \textcolor{keywordflow}{return} (nmatch ? nmatch : -1);
+122             \}
+123             \textcolor{keywordflow}{break};
+124 
+125         \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}:
+126         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)n'}:
+127         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+128             \textcolor{keywordflow}{while} ((ch1 =
+129                     (*getch) (arg1,
+130                               arg2)) == \textcolor{charliteral}{' '} || ch1 == \textcolor{charliteral}{'\(\backslash\)t'} || ch1 == \textcolor{charliteral}{'\(\backslash\)n'})
+131             \{;
+132             \}
+133             \textcolor{keywordflow}{if} (ch1 != EOF)
+134             \{
+135                 (*ungetch) (arg1, arg2);
+136             \}
+137             \textcolor{keywordflow}{break};
+138 
+139         \textcolor{keywordflow}{default}:
+140           def:
+141             ch1 = (*getch) (arg1, arg2);
+142             \textcolor{keywordflow}{if} (ch1 != ch)
+143             \{
+144                 \textcolor{keywordflow}{if} (ch1 == EOF)
+145                 \{
+146                     \textcolor{keywordflow}{return} (-1);
+147                 \}
+148                 (*ungetch) (arg1, arg2);
+149                 \textcolor{keywordflow}{return} nmatch;
+150             \}
+151         \}
+152     \}
+153 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{fscanf_8c_a7664caa54eef93f7c61d65e931ef1803}\label{fscanf_8c_a7664caa54eef93f7c61d65e931ef1803}} 
+\index{fscanf.\+c@{fscanf.\+c}!fscanf@{fscanf}}
+\index{fscanf@{fscanf}!fscanf.\+c@{fscanf.\+c}}
+\paragraph{\texorpdfstring{fscanf()}{fscanf()}}
+{\footnotesize\ttfamily int fscanf (\begin{DoxyParamCaption}\item[{int}]{dev,  }\item[{char $\ast$}]{fmt,  }\item[{int}]{args }\end{DoxyParamCaption})}
+
+
+
+Read from a device (file) according to a format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & device to read from \\
+\hline
+{\em $\ast$fmt} & format string \\
+\hline
+{\em args} & number of arguments in format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result of \+\_\+doscan 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file fscanf.\+c.
+
+
+\begin{DoxyCode}
+28 \{
+29     \textcolor{keywordtype}{int} buf;
+30 
+31     buf = EMPTY;
+32     \textcolor{keywordflow}{return} (\hyperlink{fscanf_8c_a7605eb7fd6f99ccc45fc80ba2d46a466}{\_doscan}
+33             (fmt, (\textcolor{keywordtype}{int} **)&args, getch, ungetch, dev, (\textcolor{keywordtype}{int})(\textcolor{keywordtype}{int})&buf));
+34 \}
+\end{DoxyCode}

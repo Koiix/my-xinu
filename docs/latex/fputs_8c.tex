@@ -1,0 +1,59 @@
+\hypertarget{fputs_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputs.c File Reference}
+\label{fputs_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputs.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fputs.\+c}}
+
+
+This file provides fputs.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fputs_8c_ad8eefba99142a95fc61fb24df8a41436}{fputs} (char $\ast$s, int dev)
+\begin{DoxyCompactList}\small\item\em Write a null-\/terminated string to a device (file) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fputs. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fputs_8c}{fputs.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fputs_8c_ad8eefba99142a95fc61fb24df8a41436}\label{fputs_8c_ad8eefba99142a95fc61fb24df8a41436}} 
+\index{fputs.\+c@{fputs.\+c}!fputs@{fputs}}
+\index{fputs@{fputs}!fputs.\+c@{fputs.\+c}}
+\paragraph{\texorpdfstring{fputs()}{fputs()}}
+{\footnotesize\ttfamily int fputs (\begin{DoxyParamCaption}\item[{char $\ast$}]{s,  }\item[{int}]{dev }\end{DoxyParamCaption})}
+
+
+
+Write a null-\/terminated string to a device (file) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & device to write to \\
+\hline
+{\em $\ast$s} & string to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result of last putc 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file fputs.\+c.
+
+
+\begin{DoxyCode}
+18 \{
+19     \textcolor{keywordtype}{int} r = 0, c;
+20 
+21     \textcolor{keywordflow}{while} ((c = (*s++)))
+22     \{
+23         r = putc(dev, c);
+24     \}
+25     \textcolor{keywordflow}{return} r;
+26 \}
+\end{DoxyCode}

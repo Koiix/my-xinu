@@ -1,0 +1,157 @@
+\hypertarget{doscan_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/doscan.c File Reference}
+\label{doscan_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/doscan.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/doscan.\+c}}
+
+
+This file provides \+\_\+doscan, \+\_\+innum, \+\_\+instr, \+\_\+getccl.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{doscan_8c_aeecaea15da4dd6084a1842158f37790f}{\+\_\+doscan} (register char $\ast$fmt, register int $\ast$$\ast$argp, int($\ast$getch)(int, int), int($\ast$ungetch)(int, int), int arg1, int arg2)
+\begin{DoxyCompactList}\small\item\em Scan and recognize input according to a format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides \+\_\+doscan, \+\_\+innum, \+\_\+instr, \+\_\+getccl. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{doscan_8c}{doscan.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{doscan_8c_aeecaea15da4dd6084a1842158f37790f}\label{doscan_8c_aeecaea15da4dd6084a1842158f37790f}} 
+\index{doscan.\+c@{doscan.\+c}!\+\_\+doscan@{\+\_\+doscan}}
+\index{\+\_\+doscan@{\+\_\+doscan}!doscan.\+c@{doscan.\+c}}
+\paragraph{\texorpdfstring{\+\_\+doscan()}{\_doscan()}}
+{\footnotesize\ttfamily int \+\_\+doscan (\begin{DoxyParamCaption}\item[{register char $\ast$}]{fmt,  }\item[{register int $\ast$$\ast$}]{argp,  }\item[{int($\ast$)(int, int)}]{getch,  }\item[{int($\ast$)(int, int)}]{ungetch,  }\item[{int}]{arg1,  }\item[{int}]{arg2 }\end{DoxyParamCaption})}
+
+
+
+Scan and recognize input according to a format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$fmt} & format string for the scanf \\
+\hline
+{\em $\ast$$\ast$argp} & arguments to scanf \\
+\hline
+{\em getch} & function to unget a character \\
+\hline
+{\em ungetch} & function to unget a character \\
+\hline
+{\em arg1} & 1st argument to getch/ungetch \\
+\hline
+{\em arg2} & 2nd argument to getch/ungetch \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file doscan.\+c.
+
+
+\begin{DoxyCode}
+52 \{
+53     \textcolor{keyword}{register} \textcolor{keywordtype}{int} ch;
+54     \textcolor{keywordtype}{int} nmatch, len, ch1;
+55     \textcolor{keywordtype}{int} **ptr, fileended, size;
+56 
+57     nmatch = 0;
+58     fileended = 0;
+59     \textcolor{keywordflow}{for} (;;)
+60     \{
+61         \textcolor{keywordflow}{switch} (ch = *fmt++)
+62         \{
+63         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)0'}:
+64             \textcolor{keywordflow}{return} (nmatch);
+65         \textcolor{keywordflow}{case} \textcolor{charliteral}{'%'}:
+66             \textcolor{keywordflow}{if} ((ch = *fmt++) == \textcolor{charliteral}{'%'})
+67             \{
+68                 \textcolor{keywordflow}{goto} def;
+69             \}
+70             ptr = 0;
+71             \textcolor{keywordflow}{if} (ch != \textcolor{charliteral}{'*'})
+72             \{
+73                 ptr = argp++;
+74             \}
+75             \textcolor{keywordflow}{else}
+76             \{
+77                 ch = *fmt++;
+78             \}
+79             len = 0;
+80             size = REGULAR;
+81             \textcolor{keywordflow}{while} (isdigit(ch))
+82             \{
+83                 len = len * 10 + ch - \textcolor{charliteral}{'0'};
+84                 ch = *fmt++;
+85             \}
+86             \textcolor{keywordflow}{if} (len == 0)
+87             \{
+88                 len = 30000;
+89             \}
+90             \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'l'})
+91             \{
+92                 ch = *fmt++;
+93                 size = LONG;
+94             \}
+95             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'h'})
+96             \{
+97                 size = SHORT;
+98                 ch = *fmt++;
+99             \}
+100             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'['})
+101             \{
+102                 fmt = \_getccl(fmt);
+103             \}
+104             \textcolor{keywordflow}{if} (isupper(ch))
+105             \{
+106                 ch = tolower(ch);
+107                 size = LONG;
+108             \}
+109             \textcolor{keywordflow}{if} (ch == \textcolor{charliteral}{'\(\backslash\)0'})
+110             \{
+111                 \textcolor{keywordflow}{return} (-1);
+112             \}
+113             \textcolor{keywordflow}{if} (\_innum
+114                 (ptr, ch, len, size,
+115                  getch, ungetch, arg1, arg2, &fileended) && ptr)
+116             \{
+117                 nmatch++;
+118             \}
+119             \textcolor{keywordflow}{if} (fileended)
+120             \{
+121                 \textcolor{keywordflow}{return} (nmatch ? nmatch : -1);
+122             \}
+123             \textcolor{keywordflow}{break};
+124 
+125         \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}:
+126         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)n'}:
+127         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+128             \textcolor{keywordflow}{while} ((ch1 =
+129                     (*getch) (arg1,
+130                               arg2)) == \textcolor{charliteral}{' '} || ch1 == \textcolor{charliteral}{'\(\backslash\)t'} || ch1 == \textcolor{charliteral}{'\(\backslash\)n'})
+131             \{;
+132             \}
+133             \textcolor{keywordflow}{if} (ch1 != EOF)
+134             \{
+135                 (*ungetch) (arg1, arg2);
+136             \}
+137             \textcolor{keywordflow}{break};
+138 
+139         \textcolor{keywordflow}{default}:
+140           def:
+141             ch1 = (*getch) (arg1, arg2);
+142             \textcolor{keywordflow}{if} (ch1 != ch)
+143             \{
+144                 \textcolor{keywordflow}{if} (ch1 == EOF)
+145                 \{
+146                     \textcolor{keywordflow}{return} (-1);
+147                 \}
+148                 (*ungetch) (arg1, arg2);
+149                 \textcolor{keywordflow}{return} nmatch;
+150             \}
+151         \}
+152     \}
+153 \}
+\end{DoxyCode}

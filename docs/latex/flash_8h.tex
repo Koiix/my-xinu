@@ -1,0 +1,217 @@
+\hypertarget{flash_8h}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/include/flash.h File Reference}
+\label{flash_8h}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/include/flash.\+h@{/u/riker/u88/kreiderj/os/xinu-\/x86/include/flash.\+h}}
+
+
+This file provides various definitions and prototypes for the flash driver and all its affiliates.  
+
+
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtrx__header}{trx\+\_\+header}
+\item 
+struct \hyperlink{structfile}{file}
+\item 
+struct \hyperlink{structflash__region}{flash\+\_\+region}
+\item 
+struct \hyperlink{structflash__block}{flash\+\_\+block}
+\item 
+struct \hyperlink{structflash}{flash}
+\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{flash_8h_acdca95641344ccf24c13430916c116da}\label{flash_8h_acdca95641344ccf24c13430916c116da}} 
+\#define \hyperlink{flash_8h_acdca95641344ccf24c13430916c116da}{M\+A\+X\+\_\+\+L\+I\+V\+E\+\_\+\+B\+L\+O\+C\+KS}~8
+\begin{DoxyCompactList}\small\item\em number of blocks to keep in memory \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ae13918b1117ef48c7981461f0d91208c}\label{flash_8h_ae13918b1117ef48c7981461f0d91208c}} 
+\#define \hyperlink{flash_8h_ae13918b1117ef48c7981461f0d91208c}{F\+L\+A\+S\+H\+\_\+\+B\+L\+K\+\_\+\+S\+I\+ZE}~512
+\begin{DoxyCompactList}\small\item\em disk blocks are 512 bytes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a4e73c226b29442af1c44fb53837e0903}\label{flash_8h_a4e73c226b29442af1c44fb53837e0903}} 
+\#define \hyperlink{flash_8h_a4e73c226b29442af1c44fb53837e0903}{F\+L\+A\+S\+H\+\_\+\+B\+L\+O\+C\+K\+\_\+\+F\+R\+EE}~0
+\begin{DoxyCompactList}\small\item\em block can be allocated \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a4c7a20532a78f82a10498059da70246f}\label{flash_8h_a4c7a20532a78f82a10498059da70246f}} 
+\#define \hyperlink{flash_8h_a4c7a20532a78f82a10498059da70246f}{F\+L\+A\+S\+H\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+L\+E\+AN}~1
+\begin{DoxyCompactList}\small\item\em block has been read but not writted \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a49c23516b84b302b8f9b6f1cc1e20f9a}\label{flash_8h_a49c23516b84b302b8f9b6f1cc1e20f9a}} 
+\#define \hyperlink{flash_8h_a49c23516b84b302b8f9b6f1cc1e20f9a}{F\+L\+A\+S\+H\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+I\+R\+TY}~2
+\begin{DoxyCompactList}\small\item\em block has been changed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a3f97ad25c580db34053632e83fde9b0b}\label{flash_8h_a3f97ad25c580db34053632e83fde9b0b}} 
+\#define \hyperlink{flash_8h_a3f97ad25c580db34053632e83fde9b0b}{C\+F\+E\+\_\+\+M\+I\+N\+\_\+\+B\+L\+O\+CK}~0x0000
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x000000. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a0d7f468aefb15a77725c425de7017ce7}\label{flash_8h_a0d7f468aefb15a77725c425de7017ce7}} 
+\#define \hyperlink{flash_8h_a0d7f468aefb15a77725c425de7017ce7}{C\+F\+E\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+CK}~0x01\+FF
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x03ffff. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a856efcd51b1fd0374fc4471dc3ea0a81}\label{flash_8h_a856efcd51b1fd0374fc4471dc3ea0a81}} 
+\#define \hyperlink{flash_8h_a856efcd51b1fd0374fc4471dc3ea0a81}{K\+E\+R\+N\+E\+L\+\_\+\+M\+I\+N\+\_\+\+B\+L\+O\+CK}~0x0200
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x040000. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_aa3b6b80095b6e5b6cb4b0b1753a8123d}\label{flash_8h_aa3b6b80095b6e5b6cb4b0b1753a8123d}} 
+\#define \hyperlink{flash_8h_aa3b6b80095b6e5b6cb4b0b1753a8123d}{K\+E\+R\+N\+E\+L\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+CK}~0x03\+FF
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x07ffff. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_afeee4091b76526ee4b07a66f3721b6f3}\label{flash_8h_afeee4091b76526ee4b07a66f3721b6f3}} 
+\#define \hyperlink{flash_8h_afeee4091b76526ee4b07a66f3721b6f3}{N\+V\+R\+A\+M\+\_\+\+M\+I\+N\+\_\+\+B\+L\+O\+CK}~0x1\+F\+C0
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x3\+F8000. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a2ef050406b7a96d0d511658db919cafa}\label{flash_8h_a2ef050406b7a96d0d511658db919cafa}} 
+\#define \hyperlink{flash_8h_a2ef050406b7a96d0d511658db919cafa}{N\+V\+R\+A\+M\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+CK}~0x1\+F\+FF
+\begin{DoxyCompactList}\small\item\em Physical addr\+: 0x3fffff. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a6afb081a75593f3c034881ada625cf8d}\label{flash_8h_a6afb081a75593f3c034881ada625cf8d}} 
+\#define \hyperlink{flash_8h_a6afb081a75593f3c034881ada625cf8d}{F\+L\+A\+S\+H\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}~0x0000
+\begin{DoxyCompactList}\small\item\em get the size of disk blocks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a5e486ee1e8e17129b8b0b248c078d708}\label{flash_8h_a5e486ee1e8e17129b8b0b248c078d708}} 
+\#define \hyperlink{flash_8h_a5e486ee1e8e17129b8b0b248c078d708}{F\+L\+A\+S\+H\+\_\+\+N\+\_\+\+B\+L\+O\+C\+KS}~0x0001
+\begin{DoxyCompactList}\small\item\em get number of disk blocks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ad6aeb6a0fec3aff3e58a630aac0c618e}\label{flash_8h_ad6aeb6a0fec3aff3e58a630aac0c618e}} 
+\#define \hyperlink{flash_8h_ad6aeb6a0fec3aff3e58a630aac0c618e}{F\+L\+A\+S\+H\+\_\+\+S\+Y\+NC}~0x0002
+\begin{DoxyCompactList}\small\item\em force sync of disk device \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a4b9f20b2f38b1d116faaff2896cb9fde}\label{flash_8h_a4b9f20b2f38b1d116faaff2896cb9fde}} 
+\#define \hyperlink{flash_8h_a4b9f20b2f38b1d116faaff2896cb9fde}{I\+N\+T\+E\+L\+\_\+\+R\+E\+AD}~0x\+FF
+\begin{DoxyCompactList}\small\item\em read array (normal read ops) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ab28a6adf0e111dffab4c058fd06fa91b}\label{flash_8h_ab28a6adf0e111dffab4c058fd06fa91b}} 
+\#define \hyperlink{flash_8h_ab28a6adf0e111dffab4c058fd06fa91b}{I\+N\+T\+E\+L\+\_\+\+P\+R\+O\+G\+R\+AM}~0x40
+\begin{DoxyCompactList}\small\item\em prepare to write to flash \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_aad1a0b24ee014319b7dbb516603e0c45}\label{flash_8h_aad1a0b24ee014319b7dbb516603e0c45}} 
+\#define \hyperlink{flash_8h_aad1a0b24ee014319b7dbb516603e0c45}{I\+N\+T\+E\+L\+\_\+\+E\+R\+A\+SE}~0x20
+\begin{DoxyCompactList}\small\item\em prepare to erase a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a687561a7a9eca1740fb145d323da45a9}\label{flash_8h_a687561a7a9eca1740fb145d323da45a9}} 
+\#define \hyperlink{flash_8h_a687561a7a9eca1740fb145d323da45a9}{I\+N\+T\+E\+L\+\_\+\+C\+O\+N\+F\+I\+RM}~0x\+D0
+\begin{DoxyCompactList}\small\item\em confirm erase command \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a07b8983bc1227739973d2c123b25b9c7}\label{flash_8h_a07b8983bc1227739973d2c123b25b9c7}} 
+\#define \hyperlink{flash_8h_a07b8983bc1227739973d2c123b25b9c7}{I\+N\+T\+E\+L\+\_\+\+R\+E\+S\+U\+ME}~0x\+D0
+\begin{DoxyCompactList}\small\item\em write/erase resume (post-\/suspend) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a9e5e54134c26729cb5e50446dc40bab9}\label{flash_8h_a9e5e54134c26729cb5e50446dc40bab9}} 
+\#define \hyperlink{flash_8h_a9e5e54134c26729cb5e50446dc40bab9}{I\+N\+T\+E\+L\+\_\+\+U\+N\+L\+O\+CK}~0x\+D0
+\begin{DoxyCompactList}\small\item\em soft-\/unlock a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a8c9fbb8cdea6984d2f18a35d8b723517}\label{flash_8h_a8c9fbb8cdea6984d2f18a35d8b723517}} 
+\#define \hyperlink{flash_8h_a8c9fbb8cdea6984d2f18a35d8b723517}{I\+N\+T\+E\+L\+\_\+\+S\+U\+S\+P\+E\+ND}~0x\+B0
+\begin{DoxyCompactList}\small\item\em program/erase suspend \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a9c4c7b651242b07f47884c99c1fd652b}\label{flash_8h_a9c4c7b651242b07f47884c99c1fd652b}} 
+\#define \hyperlink{flash_8h_a9c4c7b651242b07f47884c99c1fd652b}{I\+N\+T\+E\+L\+\_\+\+R\+E\+A\+D\+\_\+\+SR}~0x70
+\begin{DoxyCompactList}\small\item\em read status register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a16996415ee726c34a12b928350093bf7}\label{flash_8h_a16996415ee726c34a12b928350093bf7}} 
+\#define \hyperlink{flash_8h_a16996415ee726c34a12b928350093bf7}{I\+N\+T\+E\+L\+\_\+\+C\+L\+R\+\_\+\+SR}~0x50
+\begin{DoxyCompactList}\small\item\em clear status register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a8f3fd22a546b3587cabeb1c2ee577a75}\label{flash_8h_a8f3fd22a546b3587cabeb1c2ee577a75}} 
+\#define \hyperlink{flash_8h_a8f3fd22a546b3587cabeb1c2ee577a75}{I\+N\+T\+E\+L\+\_\+\+R\+E\+A\+D\+\_\+\+ID}~0x90
+\begin{DoxyCompactList}\small\item\em read identifier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a47ad47dff435eddbbac7872d000e574b}\label{flash_8h_a47ad47dff435eddbbac7872d000e574b}} 
+\#define \hyperlink{flash_8h_a47ad47dff435eddbbac7872d000e574b}{I\+N\+T\+E\+L\+\_\+\+B\+L\+O\+C\+K\+M\+OD}~0x60
+\begin{DoxyCompactList}\small\item\em prepare block for lock operation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a63c5a2a13163a56d7a8f268802ac8f08}\label{flash_8h_a63c5a2a13163a56d7a8f268802ac8f08}} 
+\#define \hyperlink{flash_8h_a63c5a2a13163a56d7a8f268802ac8f08}{I\+N\+T\+E\+L\+\_\+\+L\+O\+CK}~0x01
+\begin{DoxyCompactList}\small\item\em soft-\/lock a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ad2d11a7120cd09851691373793940ae5}\label{flash_8h_ad2d11a7120cd09851691373793940ae5}} 
+\#define \hyperlink{flash_8h_ad2d11a7120cd09851691373793940ae5}{I\+N\+T\+E\+L\+\_\+\+L\+O\+C\+K\+D\+O\+WN}~0x2F
+\begin{DoxyCompactList}\small\item\em put a hardware lock on a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_aafdac6a2347fc9325e998bba46dddd85}\label{flash_8h_aafdac6a2347fc9325e998bba46dddd85}} 
+\#define \hyperlink{flash_8h_aafdac6a2347fc9325e998bba46dddd85}{A\+M\+D\+\_\+\+U\+N\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+E1}~0x\+AA
+\begin{DoxyCompactList}\small\item\em write to 0x555 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_abd927150feef67676a73974671a486f6}\label{flash_8h_abd927150feef67676a73974671a486f6}} 
+\#define \hyperlink{flash_8h_abd927150feef67676a73974671a486f6}{A\+M\+D\+\_\+\+U\+N\+L\+O\+C\+K\+\_\+\+C\+Y\+C\+L\+E2}~0x55
+\begin{DoxyCompactList}\small\item\em write to 0x2\+AA \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a2c50d3b5387714a2d7d1d8fd539136df}\label{flash_8h_a2c50d3b5387714a2d7d1d8fd539136df}} 
+\#define \hyperlink{flash_8h_a2c50d3b5387714a2d7d1d8fd539136df}{A\+M\+D\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+Y\+C\+L\+E3}~0x80
+\begin{DoxyCompactList}\small\item\em write to 0x555 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a9ebefd28fee15bd9a038c6999e5170f4}\label{flash_8h_a9ebefd28fee15bd9a038c6999e5170f4}} 
+\#define \hyperlink{flash_8h_a9ebefd28fee15bd9a038c6999e5170f4}{A\+M\+D\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+Y\+C\+L\+E6}~0x30
+\begin{DoxyCompactList}\small\item\em write to erase address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a8ab88050f5a580c5dabea791349dd989}\label{flash_8h_a8ab88050f5a580c5dabea791349dd989}} 
+\#define \hyperlink{flash_8h_a8ab88050f5a580c5dabea791349dd989}{A\+M\+D\+\_\+\+P\+R\+O\+G\+R\+A\+M\+\_\+\+C\+Y\+C\+L\+E3}~0x\+A0
+\begin{DoxyCompactList}\small\item\em write to 0x555 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_af4f18bb2d9b078a05ad061e2e98dac7a}\label{flash_8h_af4f18bb2d9b078a05ad061e2e98dac7a}} 
+\#define \hyperlink{flash_8h_af4f18bb2d9b078a05ad061e2e98dac7a}{A\+M\+D\+\_\+\+R\+E\+S\+ET}~0x\+F0
+\begin{DoxyCompactList}\small\item\em write to 0x\+X\+XX \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a1d66c075935192dbd2629a4e1e55f52a}\label{flash_8h_a1d66c075935192dbd2629a4e1e55f52a}} 
+\#define \hyperlink{flash_8h_a1d66c075935192dbd2629a4e1e55f52a}{A\+M\+D\+\_\+\+R\+E\+AD}~0x\+FF
+\begin{DoxyCompactList}\small\item\em read command \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ac50e01e75867ccbbad277209fbf7f675}\label{flash_8h_ac50e01e75867ccbbad277209fbf7f675}} 
+\#define \hyperlink{flash_8h_ac50e01e75867ccbbad277209fbf7f675}{A\+M\+D\+\_\+\+B\+L\+O\+C\+K\+M\+OD}~0x60
+\begin{DoxyCompactList}\small\item\em prepare block for lock op \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a2a5a3170424717a219546f87dcbf5672}\label{flash_8h_a2a5a3170424717a219546f87dcbf5672}} 
+\#define \hyperlink{flash_8h_a2a5a3170424717a219546f87dcbf5672}{A\+M\+D\+\_\+\+L\+O\+CK}~0x01
+\begin{DoxyCompactList}\small\item\em soft-\/lock a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a12ac9ebcc76d32354594f3d9d80b4972}\label{flash_8h_a12ac9ebcc76d32354594f3d9d80b4972}} 
+\#define \hyperlink{flash_8h_a12ac9ebcc76d32354594f3d9d80b4972}{A\+M\+D\+\_\+\+C\+L\+R\+\_\+\+SR}~0x50
+\begin{DoxyCompactList}\small\item\em clear status register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a448fd684473647c1edfa142e19871321}\label{flash_8h_a448fd684473647c1edfa142e19871321}} 
+\#define \hyperlink{flash_8h_a448fd684473647c1edfa142e19871321}{A\+M\+D\+\_\+\+R\+E\+G\+\_\+\+C\+Y\+C\+L\+E1}~0x555
+\begin{DoxyCompactList}\small\item\em Register for unlock cycle1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a2fca077f68b4777da28f2e83b32488a0}\label{flash_8h_a2fca077f68b4777da28f2e83b32488a0}} 
+\#define \hyperlink{flash_8h_a2fca077f68b4777da28f2e83b32488a0}{A\+M\+D\+\_\+\+R\+E\+G\+\_\+\+C\+Y\+C\+L\+E2}~0x2\+AA
+\begin{DoxyCompactList}\small\item\em Register for unlock cycle2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ab9294ce67f7d8831ad2a8aab898d8e74}\label{flash_8h_ab9294ce67f7d8831ad2a8aab898d8e74}} 
+\#define \hyperlink{flash_8h_ab9294ce67f7d8831ad2a8aab898d8e74}{A\+M\+D\+\_\+\+S\+R\+\_\+\+W\+S\+MS}~0x001
+\begin{DoxyCompactList}\small\item\em Write State Machine Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_aa43b7cb63d371a416b6e26a5d9f49262}\label{flash_8h_aa43b7cb63d371a416b6e26a5d9f49262}} 
+\#define \hyperlink{flash_8h_aa43b7cb63d371a416b6e26a5d9f49262}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+W\+S\+MS}~7
+\begin{DoxyCompactList}\small\item\em Write State Machine Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a3c9724c1a36f974d6bed70af7573bb58}\label{flash_8h_a3c9724c1a36f974d6bed70af7573bb58}} 
+\#define \hyperlink{flash_8h_a3c9724c1a36f974d6bed70af7573bb58}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+E\+SS}~6
+\begin{DoxyCompactList}\small\item\em Erase-\/\+Suspend Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_adf2e5c14b9fcdc287805646934f3c380}\label{flash_8h_adf2e5c14b9fcdc287805646934f3c380}} 
+\#define \hyperlink{flash_8h_adf2e5c14b9fcdc287805646934f3c380}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+ES}~5
+\begin{DoxyCompactList}\small\item\em Erase Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ab81f88f377038ad7623328e93d8e2fa1}\label{flash_8h_ab81f88f377038ad7623328e93d8e2fa1}} 
+\#define \hyperlink{flash_8h_ab81f88f377038ad7623328e93d8e2fa1}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+PS}~4
+\begin{DoxyCompactList}\small\item\em Program Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a57663ff051aef9eb9ebe594c462cba79}\label{flash_8h_a57663ff051aef9eb9ebe594c462cba79}} 
+\#define \hyperlink{flash_8h_a57663ff051aef9eb9ebe594c462cba79}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+P\+SS}~2
+\begin{DoxyCompactList}\small\item\em Program Suspend Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a029e5dbd2b4651558e18df5eb5accc19}\label{flash_8h_a029e5dbd2b4651558e18df5eb5accc19}} 
+\#define \hyperlink{flash_8h_a029e5dbd2b4651558e18df5eb5accc19}{I\+N\+T\+E\+L\+\_\+\+S\+R\+\_\+\+B\+LS}~1
+\begin{DoxyCompactList}\small\item\em Block Lock Status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a0d3ea87fb178344b957b34f096270d1b}\label{flash_8h_a0d3ea87fb178344b957b34f096270d1b}} 
+\#define \hyperlink{flash_8h_a0d3ea87fb178344b957b34f096270d1b}{I\+N\+T\+E\+L\+\_\+\+I\+D\+\_\+\+M\+FG}~0x00
+\begin{DoxyCompactList}\small\item\em Intel = 0x0089. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ab8a89dcd995744b03298afd93667ae99}\label{flash_8h_ab8a89dcd995744b03298afd93667ae99}} 
+\#define \hyperlink{flash_8h_ab8a89dcd995744b03298afd93667ae99}{I\+N\+T\+E\+L\+\_\+\+I\+D\+\_\+\+D\+EV}~0x02
+\begin{DoxyCompactList}\small\item\em Device memory-\/map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a88eabd2a77515bed23ca81ce2791c1f1}\label{flash_8h_a88eabd2a77515bed23ca81ce2791c1f1}} 
+\#define \hyperlink{flash_8h_a88eabd2a77515bed23ca81ce2791c1f1}{I\+N\+T\+E\+L\+\_\+\+I\+D\+\_\+\+B\+LS}~0x04
+\begin{DoxyCompactList}\small\item\em bit\+: 0 = soft-\/lock, 1 = hard-\/lock \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a61971e392e20bdd80110abc3f1ecff35}\label{flash_8h_a61971e392e20bdd80110abc3f1ecff35}} 
+\#define \hyperlink{flash_8h_a61971e392e20bdd80110abc3f1ecff35}{I\+N\+T\+E\+L\+\_\+\+S\+\_\+\+L\+O\+CK}~0x01
+\begin{DoxyCompactList}\small\item\em software lock \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a4384dbbdeefc99d933404332bab9d2d5}\label{flash_8h_a4384dbbdeefc99d933404332bab9d2d5}} 
+\#define \hyperlink{flash_8h_a4384dbbdeefc99d933404332bab9d2d5}{I\+N\+T\+E\+L\+\_\+\+H\+\_\+\+L\+O\+CK}~0x02
+\begin{DoxyCompactList}\small\item\em lock-\/down (hardward lock) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a699d1d96379d749a98265fadb2bb73dc}\label{flash_8h_a699d1d96379d749a98265fadb2bb73dc}} 
+\#define \hyperlink{flash_8h_a699d1d96379d749a98265fadb2bb73dc}{A\+M\+D\+\_\+\+S\+\_\+\+L\+O\+CK}~0x01
+\begin{DoxyCompactList}\small\item\em software lock \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a87301377fb19f3ead68325f08c2004c3}\label{flash_8h_a87301377fb19f3ead68325f08c2004c3}} 
+\#define \hyperlink{flash_8h_a87301377fb19f3ead68325f08c2004c3}{A\+M\+D\+\_\+\+H\+\_\+\+L\+O\+CK}~0x02
+\begin{DoxyCompactList}\small\item\em lock-\/down (hardward lock) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a6dba447a327f1cb1da83327a4e7abb80}\label{flash_8h_a6dba447a327f1cb1da83327a4e7abb80}} 
+\#define \hyperlink{flash_8h_a6dba447a327f1cb1da83327a4e7abb80}{F\+L\+A\+S\+H\+\_\+\+B\+L\+O\+CK}~0x00
+\begin{DoxyCompactList}\small\item\em block is a \hyperlink{structflash__block}{flash\+\_\+block} struct \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ac76e25a82a154077a8f9690e7a5e225c}\label{flash_8h_ac76e25a82a154077a8f9690e7a5e225c}} 
+\#define \hyperlink{flash_8h_ac76e25a82a154077a8f9690e7a5e225c}{F\+L\+A\+S\+H\+\_\+\+L\+O\+G\+B\+L\+O\+CK}~0x01
+\begin{DoxyCompactList}\small\item\em block is a logical block number \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_af7885ead0caebd279d43fe1cb3da6708}\label{flash_8h_af7885ead0caebd279d43fe1cb3da6708}} 
+\#define \hyperlink{flash_8h_af7885ead0caebd279d43fe1cb3da6708}{F\+L\+A\+S\+H\+\_\+\+S\+T\+A\+T\+US}~0x0000
+\begin{DoxyCompactList}\small\item\em return status register (8-\/bits) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a1f53f005f1650f07eb3558ae9c79846a}\label{flash_8h_a1f53f005f1650f07eb3558ae9c79846a}} 
+\#define \hyperlink{flash_8h_a1f53f005f1650f07eb3558ae9c79846a}{F\+L\+A\+S\+H\+\_\+\+M\+O\+DE}~0x0001
+\begin{DoxyCompactList}\small\item\em change mode device is in \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_ae74f7aa299ef67f530aeb47085346805}\label{flash_8h_ae74f7aa299ef67f530aeb47085346805}} 
+\#define \hyperlink{flash_8h_ae74f7aa299ef67f530aeb47085346805}{F\+L\+A\+S\+H\+\_\+\+L\+O\+C\+K\+ED}~0x0010
+\begin{DoxyCompactList}\small\item\em return id register (16-\/bits) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a9716fe85507f080c4ddec4e71cb6c412}\label{flash_8h_a9716fe85507f080c4ddec4e71cb6c412}} 
+\#define \hyperlink{flash_8h_a9716fe85507f080c4ddec4e71cb6c412}{F\+L\+A\+S\+H\+\_\+\+L\+O\+CK}~0x0011
+\begin{DoxyCompactList}\small\item\em put a software lock on a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a2efe69749ea7fda8231ea44c015ceb24}\label{flash_8h_a2efe69749ea7fda8231ea44c015ceb24}} 
+\#define \hyperlink{flash_8h_a2efe69749ea7fda8231ea44c015ceb24}{F\+L\+A\+S\+H\+\_\+\+U\+N\+L\+O\+CK}~0x0012
+\begin{DoxyCompactList}\small\item\em remove a software lock on a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_afbf9e2c57ba63fd6f14145447d3cc63e}\label{flash_8h_afbf9e2c57ba63fd6f14145447d3cc63e}} 
+\#define \hyperlink{flash_8h_afbf9e2c57ba63fd6f14145447d3cc63e}{F\+L\+A\+S\+H\+\_\+\+L\+O\+C\+K\+D\+O\+WN}~0x0013
+\begin{DoxyCompactList}\small\item\em put hardware lock on a block \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{flash_8h_a3e096d76debd0062a3ad5a0eb6d5304c}\label{flash_8h_a3e096d76debd0062a3ad5a0eb6d5304c}} 
+\#define \hyperlink{flash_8h_a3e096d76debd0062a3ad5a0eb6d5304c}{F\+L\+A\+S\+H\+\_\+\+E\+R\+A\+S\+E\+\_\+\+P\+R\+EP}~0x0014
+\begin{DoxyCompactList}\small\item\em prepare hardware to be erased \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides various definitions and prototypes for the flash driver and all its affiliates. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{flash_8h}{flash.\+h} 2065 2009-\/09-\/04 21\+:44\+:36Z brylow 
+\end{DoxyParagraph}

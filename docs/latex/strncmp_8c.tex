@@ -1,0 +1,63 @@
+\hypertarget{strncmp_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncmp.c File Reference}
+\label{strncmp_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncmp.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncmp.\+c}}
+
+
+This file provides sstrncmp.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{strncmp_8c_ac49d194e06bfaf92cbb60cf002c710d4}{strncmp} (char $\ast$s1, char $\ast$s2, int n)
+\begin{DoxyCompactList}\small\item\em Compare strings (at most n bytes). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides sstrncmp. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{strncmp_8c}{strncmp.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{strncmp_8c_ac49d194e06bfaf92cbb60cf002c710d4}\label{strncmp_8c_ac49d194e06bfaf92cbb60cf002c710d4}} 
+\index{strncmp.\+c@{strncmp.\+c}!strncmp@{strncmp}}
+\index{strncmp@{strncmp}!strncmp.\+c@{strncmp.\+c}}
+\paragraph{\texorpdfstring{strncmp()}{strncmp()}}
+{\footnotesize\ttfamily int strncmp (\begin{DoxyParamCaption}\item[{char $\ast$}]{s1,  }\item[{char $\ast$}]{s2,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Compare strings (at most n bytes). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$s1} & first memory location \\
+\hline
+{\em $\ast$s2} & second memory location \\
+\hline
+{\em n} & length to compare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+s1$>$s2\+: $>$0 s1==s2\+: 0 s1$<$s2\+: $<$0 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file strncmp.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18 
+19     \textcolor{keywordflow}{while} (--n >= 0 && *s1 == *s2++)
+20     \{
+21         \textcolor{keywordflow}{if} (*s1++ == \textcolor{charliteral}{'\(\backslash\)0'})
+22         \{
+23             \textcolor{keywordflow}{return} 0;
+24         \}
+25     \}
+26     \textcolor{keywordflow}{return} (n < 0 ? 0 : *s1 - *--s2);
+27 \}
+\end{DoxyCode}

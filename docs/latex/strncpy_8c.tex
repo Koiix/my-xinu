@@ -1,0 +1,70 @@
+\hypertarget{strncpy_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncpy.c File Reference}
+\label{strncpy_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncpy.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strncpy.\+c}}
+
+
+This file provides strncpy.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{strncpy_8c_a21ae87d60fcc456369668093c57db61f}{strncpy} (char $\ast$s1, const char $\ast$s2, int n)
+\begin{DoxyCompactList}\small\item\em Copy string s2 to s1, truncating or null-\/padding to always copy n bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides strncpy. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{strncpy_8c}{strncpy.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{strncpy_8c_a21ae87d60fcc456369668093c57db61f}\label{strncpy_8c_a21ae87d60fcc456369668093c57db61f}} 
+\index{strncpy.\+c@{strncpy.\+c}!strncpy@{strncpy}}
+\index{strncpy@{strncpy}!strncpy.\+c@{strncpy.\+c}}
+\paragraph{\texorpdfstring{strncpy()}{strncpy()}}
+{\footnotesize\ttfamily char$\ast$ strncpy (\begin{DoxyParamCaption}\item[{char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Copy string s2 to s1, truncating or null-\/padding to always copy n bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & first string \\
+\hline
+{\em s2} & second string \\
+\hline
+{\em n} & length of s2 to copy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+s1 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file strncpy.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keyword}{register} \textcolor{keywordtype}{int} i;
+19     \textcolor{keyword}{register} \textcolor{keywordtype}{char} *os1;
+20 
+21     os1 = s1;
+22     \textcolor{keywordflow}{for} (i = 0; i < n; i++)
+23     \{
+24         \textcolor{keywordflow}{if} (((*s1++) = (*s2++)) == \textcolor{charliteral}{'\(\backslash\)0'})
+25         \{
+26             \textcolor{keywordflow}{while} (++i < n)
+27             \{
+28                 *s1++ = \textcolor{charliteral}{'\(\backslash\)0'};
+29             \}
+30             \textcolor{keywordflow}{return} os1;
+31         \}
+32     \}
+33     \textcolor{keywordflow}{return} os1;
+34 \}
+\end{DoxyCode}

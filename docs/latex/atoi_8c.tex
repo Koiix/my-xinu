@@ -1,0 +1,73 @@
+\hypertarget{atoi_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atoi.c File Reference}
+\label{atoi_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atoi.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/atoi.\+c}}
+
+
+This file provides atoi.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{atoi_8c_a797806325388ed9fe10b14aeb553ca18}{atoi} (char $\ast$p)
+\begin{DoxyCompactList}\small\item\em Converts an ascii value to an integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides atoi. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{atoi_8c}{atoi.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{atoi_8c_a797806325388ed9fe10b14aeb553ca18}\label{atoi_8c_a797806325388ed9fe10b14aeb553ca18}} 
+\index{atoi.\+c@{atoi.\+c}!atoi@{atoi}}
+\index{atoi@{atoi}!atoi.\+c@{atoi.\+c}}
+\paragraph{\texorpdfstring{atoi()}{atoi()}}
+{\footnotesize\ttfamily int atoi (\begin{DoxyParamCaption}\item[{char $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Converts an ascii value to an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & pointer to ascii string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file atoi.\+c.
+
+
+\begin{DoxyCode}
+15 \{
+16     \textcolor{keywordtype}{int} n = 0, f = 0;
+17 
+18     \textcolor{keywordflow}{for} (;; p++)
+19     \{
+20         \textcolor{keywordflow}{switch} (*p)
+21         \{
+22         \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}:
+23         \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+24             \textcolor{keywordflow}{continue};
+25         \textcolor{keywordflow}{case} \textcolor{charliteral}{'-'}:
+26             f++;
+27         \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:
+28             p++;
+29         \}
+30         \textcolor{keywordflow}{break};
+31     \}
+32 
+33     \textcolor{keywordflow}{while} (*p >= \textcolor{charliteral}{'0'} && *p <= \textcolor{charliteral}{'9'})
+34     \{
+35         n = n * 10 + *p++ - \textcolor{charliteral}{'0'};
+36     \}
+37 
+38     \textcolor{keywordflow}{return} (f ? -n : n);
+39 \}
+\end{DoxyCode}

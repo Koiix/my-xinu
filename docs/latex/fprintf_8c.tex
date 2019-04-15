@@ -1,0 +1,60 @@
+\hypertarget{fprintf_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fprintf.c File Reference}
+\label{fprintf_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fprintf.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/fprintf.\+c}}
+
+
+This file provides fprintf.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fprintf_8c_ade81307f7a5c26d1cc181e94b5fe0dd6}{fprintf} (int dev, char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em Print a formatted message on specified device (file) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides fprintf. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{fprintf_8c}{fprintf.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{fprintf_8c_ade81307f7a5c26d1cc181e94b5fe0dd6}\label{fprintf_8c_ade81307f7a5c26d1cc181e94b5fe0dd6}} 
+\index{fprintf.\+c@{fprintf.\+c}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!fprintf.\+c@{fprintf.\+c}}
+\paragraph{\texorpdfstring{fprintf()}{fprintf()}}
+{\footnotesize\ttfamily int fprintf (\begin{DoxyParamCaption}\item[{int}]{dev,  }\item[{char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Print a formatted message on specified device (file) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & device to write to \\
+\hline
+{\em $\ast$fmt} & format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the output was printed sucessfully, -\/1 if an error occured 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file fprintf.\+c.
+
+
+\begin{DoxyCode}
+21 \{
+22     va\_list ap;
+23     \textcolor{keywordtype}{int} putc(did32, \textcolor{keywordtype}{char});
+24 
+25     va\_start(ap, fmt);
+26     \hyperlink{fdoprnt_8c_ad9c803dd3af12dbf093b14507b0e41c6}{\_fdoprnt}(fmt, ap, putc, dev);
+27     va\_end(ap);
+28 
+29     \textcolor{keywordflow}{return} 0;
+30 \}
+\end{DoxyCode}

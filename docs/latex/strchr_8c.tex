@@ -1,0 +1,66 @@
+\hypertarget{strchr_8c}{}\subsection{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strchr.c File Reference}
+\label{strchr_8c}\index{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strchr.\+c@{/u/riker/u88/kreiderj/os/xinu-\/x86/lib/strchr.\+c}}
+
+
+This file provides strchr.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{strchr_8c_a12871ed234858ef0e363d2b8aa572fc1}{strchr} (const char $\ast$s, int c)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the location in a string at which which a particular character appears. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This file provides strchr. 
+
+\begin{DoxyParagraph}{Id}
+\hyperlink{strchr_8c}{strchr.\+c} 2020 2009-\/08-\/13 17\+:50\+:08Z mschul 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\mbox{\Hypertarget{strchr_8c_a12871ed234858ef0e363d2b8aa572fc1}\label{strchr_8c_a12871ed234858ef0e363d2b8aa572fc1}} 
+\index{strchr.\+c@{strchr.\+c}!strchr@{strchr}}
+\index{strchr@{strchr}!strchr.\+c@{strchr.\+c}}
+\paragraph{\texorpdfstring{strchr()}{strchr()}}
+{\footnotesize\ttfamily char$\ast$ strchr (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the location in a string at which which a particular character appears. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$s} & string to search \\
+\hline
+{\em c} & character to locate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the pointer in the string, N\+U\+LL if character not found 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file strchr.\+c.
+
+
+\begin{DoxyCode}
+17 \{
+18     \textcolor{keywordflow}{for} (; *s != \textcolor{charliteral}{'\(\backslash\)0'}; s++)
+19     \{
+20         \textcolor{keywordflow}{if} (*s == (\textcolor{keyword}{const} \textcolor{keywordtype}{char})c)
+21         \{
+22             \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char} *)s;
+23         \}
+24     \}
+25 
+26     \textcolor{keywordflow}{if} ((\textcolor{keyword}{const} \textcolor{keywordtype}{char})c == *s)
+27     \{
+28         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char} *)s;
+29     \}
+30 
+31     \textcolor{keywordflow}{return} 0;
+32 \}
+\end{DoxyCode}
